@@ -22,8 +22,8 @@
                                 <td>{{ item.categoria }}</td>
                                 <td>{{ item.descripcion }}</td>
                                 <td>
-                                    <!-- <a href="{% url 'app:categoria_editar' item.id  %}" class="btn btn-sm btn-warning">E</a>
-                                    <a href="{% url 'app:categoria_borrar' item.id  %}" class="btn btn-sm btn-danger">B</a> -->
+                                    <a href="{% url 'app:subcategoria_editar' item.id  %}" class="btn btn-sm btn-warning">E</a>
+                                    <a href="{% url 'app:subcategoria_borrar' item.id  %}" class="btn btn-sm btn-danger">B</a>
                                 </td>
                             </tr>
                         {% endfor %}

@@ -56,3 +56,18 @@ class SubCategoriaNueva(generic.CreateView):
     context_object_name='obj'
     form_class=SubCategoriaForm
     success_url=reverse_lazy('app:subcategoria_listar')
+
+
+class SubCategoriaEditar(generic.UpdateView):
+    model=SubCategoria
+    template_name='app/subcategoria_form.html'
+    context_object_name='obj'
+    form_class=SubCategoriaForm
+    success_url=reverse_lazy('app:subcategoria_listar')
+
+
+class SubCategoriaBorrar(generic.DeleteView):
+    model=SubCategoria
+    template_name='app/borrar.html'
+    context_object_name='obj'
+    success_url=reverse_lazy('app:subcategoria_listar')

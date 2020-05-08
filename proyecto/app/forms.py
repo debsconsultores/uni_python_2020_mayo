@@ -7,6 +7,13 @@ class CategoriaForm(forms.ModelForm):
         fields=['descripcion']
         labels={'descripcion':'Descripción'}
     
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
+    
 
 class SubCategoriaForm(forms.ModelForm):
     class Meta:
