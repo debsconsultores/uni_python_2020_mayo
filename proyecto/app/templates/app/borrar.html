@@ -1,0 +1,22 @@
+{% extends 'base/index.html' %}
+
+{% block contenido %}
+<div class="container">
+    <div class="row">
+        <div class="card text-white bg-success">
+            <div class="card-header">Agregar Categoría</div>
+            <div class="card-body">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <h3>¿Borrar {{obj.descripcion }}?</h3>
+                    <button type="submit" class="btn btn-danger">Si, Borrar</button>
+                    <a href="{% url 'app:categoria_listar' %}" class="btn btn-info">No, Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block pie_pagina%}
+{% endblock %}
