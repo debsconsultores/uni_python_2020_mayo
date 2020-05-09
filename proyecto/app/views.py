@@ -88,6 +88,22 @@ def marca(request,id=None):
         print(m)
         contexto = {"obj":m}
 
+    if request.method == "POST":
+        # print(request.POST)
+        # print(request.POST["id_descripcion"])
+        desc = request.POST["id_descripcion"]
+        if not id:
+            m = Marca(
+                descripcion=desc
+            )
+            m.save()
+        else:
+            m = Marca.objects.filter(id=id).first()
+            m.descripcion = desc
+            m.save()
+        
+        # return reverse("app:marca_listar")
+
 
 
     return render(request,template_name,contexto)
