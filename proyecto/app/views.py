@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 # from app.models import Categoria
-from .models import Categoria,SubCategoria
+from .models import Categoria,SubCategoria, Marca
 from .forms import CategoriaForm,SubCategoriaForm
 
 # Create your views here.
@@ -71,3 +71,27 @@ class SubCategoriaBorrar(generic.DeleteView):
     template_name='app/borrar.html'
     context_object_name='obj'
     success_url=reverse_lazy('app:subcategoria_listar')
+
+
+class MarcaListar(generic.ListView):
+    model=Marca
+    template_name='app/marca_list.html'
+    context_object_name='obj'
+
+
+def marca(request,id=None):
+    template_name = "app/marca_form.html"
+
+    contexto = {}
+    if request.method == "GET":
+        m = Marca.objects.filter(id=id).first()
+        print(m)
+        contexto = {"obj":m}
+
+
+
+    return render(request,template_name,contexto)
+        
+
+
+

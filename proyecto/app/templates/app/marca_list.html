@@ -4,10 +4,11 @@
 <div class="container">
     <div class="row">
         <div class="card text-white bg-success">
-            <div class="card-header">Listado de Categorías
-                <a href="{% url 'app:categoria_nueva' %}" class="btn btn-info">Nueva</a>
+            <div class="card-header">Listado de Marcas
+                <a href="{% url 'app:marca_nueva' %}" class="btn btn-info">Nueva</a>
             </div>
             <div class="card-body">
+                
                 <table class="table">
                     <thead>
                         <th>Id</th>
@@ -20,8 +21,8 @@
                                 <td>{{ item.id }}</td>
                                 <td>{{ item.descripcion }}</td>
                                 <td>
-                                    <a href="{% url 'app:categoria_editar' item.id  %}" class="btn btn-sm btn-warning">E</a>
-                                    <a href="{% url 'app:categoria_borrar' item.id  %}" class="btn btn-sm btn-danger">B</a>
+                                    <a href="{% url 'app:marca_editar' item.id  %}" class="btn btn-sm btn-warning">E</a>
+                                    <!-- <a href="{% url 'app:subcategoria_borrar' item.id  %}" class="btn btn-sm btn-danger">B</a> -->
                                 </td>
                             </tr>
                         {% endfor %}
