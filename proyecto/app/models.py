@@ -49,3 +49,24 @@ class Marca(models.Model):
     
     class Meta:
         verbose_name_plural = "Marcas"
+
+
+class Producto(models.Model):
+    marca = models.ForeignKey(
+        Marca,
+        on_delete=models.DO_NOTHING
+        )
+    subcategoria = models.ForeignKey(
+        SubCategoria,
+        on_delete=models.CASCADE
+        )
+    descripcion = models.CharField(
+        max_length=50,
+        unique=True,
+        null=False,
+        blank=False
+        )
+    precio = models.FloatField(default=0)
+    
+    cantidad = models.IntegerField(default=0)
+    
