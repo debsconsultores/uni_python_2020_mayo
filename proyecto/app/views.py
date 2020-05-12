@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 
@@ -89,8 +89,6 @@ def marca(request,id=None):
         contexto = {"obj":m}
 
     if request.method == "POST":
-        # print(request.POST)
-        # print(request.POST["id_descripcion"])
         desc = request.POST["id_descripcion"]
         if not id:
             m = Marca(
@@ -103,8 +101,7 @@ def marca(request,id=None):
             m.save()
         
         # return reverse("app:marca_listar")
-
-
+        return redirect("app:marca_listar")
 
     return render(request,template_name,contexto)
         
