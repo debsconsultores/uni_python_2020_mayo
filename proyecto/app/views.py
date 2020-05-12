@@ -5,8 +5,10 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 # from app.models import Categoria
-from .models import Categoria,SubCategoria, Marca
-from .forms import CategoriaForm,SubCategoriaForm
+from .models import Categoria,SubCategoria, Marca, \
+    Producto
+from .forms import CategoriaForm,SubCategoriaForm, \
+    ProductoForm
 
 # Create your views here.
 def hola_mundo(request):
@@ -106,5 +108,16 @@ def marca(request,id=None):
     return render(request,template_name,contexto)
         
 
+class ProductoListar(generic.ListView):
+    model=Producto
+    template_name='app/producto_list.html'
+    context_object_name='obj'
 
+
+class ProductoNueva(generic.CreateView):
+    model=Producto
+    template_name='app/producto_form.html'
+    context_object_name='obj'
+    form_class=ProductoForm
+    success_url=reverse_lazy('app:producto_listar')
 

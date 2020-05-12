@@ -1,0 +1,46 @@
+{% extends 'base/index.html' %}
+
+{% block contenido %}
+<div class="container">
+    <div class="row">
+        <div class="card text-white bg-success">
+            <div class="card-header">Listado de Productos
+                <a href="{% url 'app:producto_nuevo' %}" class="btn btn-info">Nueva</a>
+            </div>
+            <div class="card-body">
+                
+                <table class="table">
+                    <thead>
+                        <th>Id</th>
+                        <th>Marca</th>
+                        <th>Sub Categoria</th>
+                        <th>Descripción</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </thead>
+                    <tbody>
+                        {% for item in obj %}
+                            <tr>
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.marca }}</td>
+                                <td>{{ item.subcategoria}}</td>
+                                <td>{{ item.descripcion }}</td>
+                                <td>{{ item.cantidad }}</td>
+                                <td>{{ item.precio }}</td>
+                                <td>
+                                    <!-- <a href="{% url 'app:marca_editar' item.id  %}" class="btn btn-sm btn-warning">E</a> -->
+                                    <!-- <a href="{% url 'app:subcategoria_borrar' item.id  %}" class="btn btn-sm btn-danger">B</a> -->
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>          
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block pie_pagina%}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base/index.html' %}
+
+{% block contenido %}
+<div class="container">
+    <div class="row">
+        <div class="card text-white bg-success">
+            <div class="card-header">Agregar Marca</div>
+            <div class="card-body">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    
+                    <button type="submit" class="btn btn-danger">Guardar</button>
+                    <a href="{% url 'app:producto_listar' %}" class="btn btn-info">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block pie_pagina%}
+{% endblock %}
