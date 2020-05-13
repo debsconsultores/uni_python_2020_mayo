@@ -34,6 +34,7 @@ class CategoriaNueva(ClaseBase,generic.CreateView):
     form_class=CategoriaForm
     success_url=reverse_lazy('app:categoria_listar')
     permission_required = "app.add_categoria"
+    success_message="Creado Satisfactoriamente"
 
 
 class CategoriaEditar(generic.UpdateView):
