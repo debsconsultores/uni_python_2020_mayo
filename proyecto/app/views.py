@@ -11,25 +11,29 @@ from .models import Categoria,SubCategoria, Marca, \
 from .forms import CategoriaForm,SubCategoriaForm, \
     ProductoForm
 
+from home.views import ClaseBase
+
+
 # Create your views here.
 def hola_mundo(request):
     return HttpResponse("Hola Mundo a los de INATEC")
 
 
-class CategoriaListar(LoginRequiredMixin,generic.ListView):
+class CategoriaListar(ClaseBase,generic.ListView):
     model=Categoria
     template_name='app/categoria_list.html'
     context_object_name='obj'
     ordering="descripcion"
-    login_url='home:login'
+    permission_required = "app.view_categoria"
 
 
-class CategoriaNueva(generic.CreateView):
+class CategoriaNueva(ClaseBase,generic.CreateView):
     model=Categoria
     template_name='app/categoria_form.html'
     context_object_name='obj'
     form_class=CategoriaForm
     success_url=reverse_lazy('app:categoria_listar')
+    permission_required = "app.add_categoria"
 
 
 class CategoriaEditar(generic.UpdateView):
