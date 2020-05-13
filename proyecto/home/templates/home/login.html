@@ -1,0 +1,38 @@
+{% extends 'base/index.html' %}
+
+{% block menu %}{% endblock %}
+{% block pie_pagina %}{% endblock %}
+
+{% block contenido %}
+<h1>Bienvenido al Sitio... <small>Identifícate</small></h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {#{ form.as_p }#}
+    <div class="container">
+        <div class="row">
+            <div class="form-group">
+                <!-- <div class="col-4">
+                    <label for="">Usuario:</label>
+                </div>
+                <div class="col-8">
+                    {{ form.username }}
+                </div> -->
+                <div class="form-group has-success">
+                    <label class="form-control-label" for="inputSuccess1">Usuario</label>
+                    <input type="text" value="" class="form-control is-valid" id="id_username" name="username">
+                    <div class="valid-feedback">Nombre de Usuario</div>
+                  </div>
+            </div>
+            <div class="form-group">
+                <div class="col-4">
+                    <label for="">Clave:</label>
+                </div>
+                <div class="col-8">
+                    {{ form.password }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-info" >Entrar</button>
+</form>
+{% endblock %}

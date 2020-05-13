@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'base/css/bootstrap.min.css' %}">
 </head>
 <body>
+  {% block menu %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,9 +32,13 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'app:producto_listar' %}">Producto</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home:logout' %}">Salir</a>
+            </li>
           </ul>
         </div>
       </nav>
+    {% endblock menu %}
 
     {% block contenido %}
     {% endblock %}

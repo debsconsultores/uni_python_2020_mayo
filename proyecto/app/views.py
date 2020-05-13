@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # from app.models import Categoria
 from .models import Categoria,SubCategoria, Marca, \
@@ -15,11 +16,12 @@ def hola_mundo(request):
     return HttpResponse("Hola Mundo a los de INATEC")
 
 
-class CategoriaListar(generic.ListView):
+class CategoriaListar(LoginRequiredMixin,generic.ListView):
     model=Categoria
     template_name='app/categoria_list.html'
     context_object_name='obj'
     ordering="descripcion"
+    login_url='home:login'
 
 
 class CategoriaNueva(generic.CreateView):
@@ -46,10 +48,11 @@ class CategoriaBorrar(generic.DeleteView):
     success_url=reverse_lazy('app:categoria_listar')
 
 
-class SubCategoriaListar(generic.ListView):
+class SubCategoriaListar(LoginRequiredMixin,generic.ListView):
     model=SubCategoria
     template_name='app/subcategoria_list.html'
     context_object_name='obj'
+    login_url='home:login'
 
 
 class SubCategoriaNueva(generic.CreateView):
