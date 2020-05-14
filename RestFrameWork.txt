@@ -1,0 +1,29 @@
+# DRF  = Django RestFramework
+
+1. Instalar:
+pip install djangorestframework==3.9.1
+
+2. Freeze
+pip freeze > requerimientos.txt
+
+3. Registrar la app / libreria en Settings.py
+INSTALLED_APPS = [
+...
+    'rest_framework'
+]
+
+4. Crear aplicación llamada api
+manage.py startapp api
+
+4.1. Registrar la aplicaciòn API
+INSTALLED_APPS = [
+...
+    'api'
+]
+
+4.2 Crear y Vincular archivo de rutas
+	4.2.1 Vincular archivo de rutas
+
+
+Repositorio en Bitbucket.org
+https://bitbucket.org/debsconsultores/djapi/src/master/
