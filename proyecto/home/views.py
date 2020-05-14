@@ -11,8 +11,9 @@ class ClaseBase(LoginRequiredMixin,PermissionRequiredMixin,SuccessMessageMixin):
     success_message = ""
 
 
-class Home(ClaseBase,generic.TemplateView):
+class Home(LoginRequiredMixin,generic.TemplateView):
     template_name = 'home/home.html'
+
 
 
 

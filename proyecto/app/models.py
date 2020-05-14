@@ -1,8 +1,9 @@
 from django.db import models
 
-# Create your models here.
+from home.models import ClaseModelo
 
-class Categoria(models.Model):
+
+class Categoria(ClaseModelo):
     descripcion = models.CharField(
         max_length=50,
         blank=False,

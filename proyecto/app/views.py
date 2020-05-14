@@ -36,13 +36,28 @@ class CategoriaNueva(ClaseBase,generic.CreateView):
     permission_required = "app.add_categoria"
     success_message="Creado Satisfactoriamente"
 
+    def form_valid(self, form):
+        if form.instance.pk:
+            form.instance.um = self.request.user.id
+        else:
+            form.instance.uc = self.request.user
+        return super().form_valid(form)
+
 
 class CategoriaEditar(generic.UpdateView):
     model=Categoria
     template_name='app/categoria_form.html'
     context_object_name='obj'
     form_class=CategoriaForm
+    permission_required = "app.change_categoria"
     success_url=reverse_lazy('app:categoria_listar')
+
+    def form_valid(self, form):
+        if form.instance.pk:
+            form.instance.um = self.request.user.id
+        else:
+            form.instance.uc = self.request.user
+        return super().form_valid(form)
 
 
 class CategoriaBorrar(generic.DeleteView):
