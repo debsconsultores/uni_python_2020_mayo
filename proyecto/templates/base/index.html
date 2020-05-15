@@ -6,32 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Primer Proyecto</title>
     <link rel="stylesheet" href="{% static 'base/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/jquery-confirm.min.css' %}">
 </head>
 <body>
   {% block menu %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">{{user.username}}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
+            {% if perms.app.view_categoria %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'app:categoria_listar' %}">Categorias</a>
             </li>
+            {% endif %}
+            {% if perms.app.view_subcategoria %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'app:subcategoria_listar' %}">Sub Categorias</a>
             </li>
+            {% endif %}
+            {% if perms.app.view_marca%}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'app:marca_listar' %}">Marca</a>
             </li>
+            {% endif %}
+            {% if perms.app.view_producto %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'app:producto_listar' %}">Producto</a>
             </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'home:logout' %}">Salir</a>
             </li>
@@ -40,7 +48,9 @@
       </nav>
     {% endblock menu %}
 
-    {% block mensajes%}
+    <!-- {{perms.app.view_subcategoria}} <br>
+    {{perms.app.view_categoria}} -->
+    <!-- {#% block mensajes% #}
       {% if messages %}
           {% for message in messages %}
           <div class="alert alert-dismissible alert-warning">
@@ -49,16 +59,38 @@
             </div>
           {% endfor %}
       {% endif %}
-    {% endblock %}
+    {#% endblock %#}-->
     {% block contenido %}
-    {% endblock %}
+    {% endblock %} 
 
     {% block pie_pagina %}
     <h1>Esto es un pie de página</h1>
     {% endblock %}
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
     <script src="{% static 'base/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'base/js/jquery-confirm.min.js' %}"></script>
+
+    <script>
+    {% block mensajes%}
+      {% if messages %}
+          {% for message in messages %}
+          mensaje('{{message}}')
+          {% endfor %}
+      {% endif %}
+    {% endblock %}
+
+    function mensaje(msg){
+      $.alert({
+             theme: 'supervan',
+              title: '',
+              icon: 'fa fa-warning',
+              type: 'orange',
+              content: msg,
+          });
+    }
+    </script>
 
 </body>
 </html>

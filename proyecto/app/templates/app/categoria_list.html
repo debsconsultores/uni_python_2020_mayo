@@ -5,7 +5,9 @@
     <div class="row">
         <div class="card text-white bg-success">
             <div class="card-header">Listado de Categorías
+                {% if perms.app.add_categoria %}
                 <a href="{% url 'app:categoria_nueva' %}" class="btn btn-info">Nueva</a>
+                {% endif %}
             </div>
             <div class="card-body">
                 <table class="table">
@@ -20,8 +22,12 @@
                                 <td>{{ item.id }}</td>
                                 <td>{{ item.descripcion }}</td>
                                 <td>
+                                    {% if perms.app.change_categoria %}
                                     <a href="{% url 'app:categoria_editar' item.id  %}" class="btn btn-sm btn-warning">E</a>
+                                    {% endif %}
+                                    {% if perms.app.delete_categoria %}
                                     <a href="{% url 'app:categoria_borrar' item.id  %}" class="btn btn-sm btn-danger">B</a>
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}

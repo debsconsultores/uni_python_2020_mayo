@@ -44,13 +44,14 @@ class CategoriaNueva(VistaAlta):
     #     return super().form_valid(form)
 
 
-class CategoriaEditar(generic.UpdateView):
+class CategoriaEditar(ClaseBase,generic.UpdateView):
     model=Categoria
     template_name='app/categoria_form.html'
     context_object_name='obj'
     form_class=CategoriaForm
     permission_required = "app.change_categoria"
     success_url=reverse_lazy('app:categoria_listar')
+    success_message="Actualizado Satisfactoriamente"
 
     def form_valid(self, form):
         if form.instance.pk:
@@ -68,11 +69,12 @@ class CategoriaBorrar(generic.DeleteView):
     success_url=reverse_lazy('app:categoria_listar')
 
 
-class SubCategoriaListar(LoginRequiredMixin,generic.ListView):
+class SubCategoriaListar(ClaseBase,generic.ListView):
     model=SubCategoria
     template_name='app/subcategoria_list.html'
     context_object_name='obj'
     login_url='home:login'
+    permission_required = "app.view_subcategoria"
 
 
 class SubCategoriaNueva(generic.CreateView):
