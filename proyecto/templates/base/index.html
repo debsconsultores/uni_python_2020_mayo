@@ -76,19 +76,35 @@
     {% block mensajes%}
       {% if messages %}
           {% for message in messages %}
-          mensaje('{{message}}')
+          mensaje('{{message|escape}}')
           {% endfor %}
+      {% endif %}
+
+      {% if form.errors %}
+          {% for field in form %}
+              {% if field.errors %}
+                  {% for error in field.errors %}
+                    mensaje('{{ error|escape }}')
+                  {% endfor %}
+              {% endif %}
+          {% endfor %}
+      
+          {% if form.non_field_errors%}
+              {% for error in form.non_field_errors %}
+                mensaje('{{ error|escape }}')
+              {% endfor %}
+          {% endif %}
       {% endif %}
     {% endblock %}
 
     function mensaje(msg){
       $.alert({
-             theme: 'supervan',
-              title: '',
-              icon: 'fa fa-warning',
-              type: 'orange',
-              content: msg,
-          });
+          theme: 'supervan',
+          title: '',
+          icon: 'fa fa-warning',
+          type: 'orange',
+          content: msg,
+      });
     }
     </script>
 
