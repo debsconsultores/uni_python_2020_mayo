@@ -38,10 +38,12 @@ def crud_categoria(request,id):
             resp = {"msg":"Id es Requerido" }
             return Response(resp,estado)
 
+        d_id = int(d_id)
         if d_id!= id:
             estado = status.HTTP_404_NOT_FOUND
             resp = {"msg":"NO coinciden los id" }
             return Response(resp,estado)  
+
 
         cat = Categoria.objects.filter(id=id).first()
         if not cat:
